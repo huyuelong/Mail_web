@@ -5,7 +5,8 @@ export const useCategoriesStore = defineStore('categories', () => {
     const categoriesList = ref([])
     const getCategories = async () => {
         const res = await getCategoriesAPI()
-        categoriesList.value = res.data
+        console.log(res)
+        categoriesList.value = res.data.result
     }
 
     return {
