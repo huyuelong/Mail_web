@@ -1,3 +1,3 @@
 <template>
-    home页
+    <div>home页</div>
 </template>
