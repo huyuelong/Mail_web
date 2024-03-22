@@ -6,3 +6,18 @@ export function getBannersAPI() {
         url: 'api/home/banners'
     })
 } 
+
+
+// 获取新品数据
+export function getNewsAPI() {
+    return httpInstance({
+        url: 'api/home/news'
+    })
+}
+
+// 获取热门数据
+export function getHotAPI() {
+    return httpInstance({
+        url: 'api/home/hot'
+    })
+}
