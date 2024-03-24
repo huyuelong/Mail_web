@@ -2,6 +2,7 @@
 import { useCategoriesStore } from '@/stores/categoriesStore'
 
 const categoriesStore = useCategoriesStore()
+
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const categoriesStore = useCategoriesStore()
                                     <p class="name ellipsis-2">
                                         {{ i.name }}
                                     </p>
-                                    <p class="desc ellipsis">{{ i.desc }}</p>
+                                    <p class="desc ellipsis">{{ i.description }}</p>
                                     <!-- <p class="price"><i>¥</i>{{ i.price }}</p> -->
                                 </div>
                             </RouterLink>
@@ -132,6 +133,7 @@ const categoriesStore = useCategoriesStore()
                                 }
 
                                 .desc {
+                                    font-size: 12px;
                                     color: #999;
                                 }
 
