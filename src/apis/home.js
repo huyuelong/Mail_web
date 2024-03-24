@@ -21,3 +21,10 @@ export function getHotAPI() {
         url: 'api/home/hot'
     })
 }
+
+// 获取分类及其下属产品
+export function getProductsAPI() {
+    return httpInstance({
+        url: 'api/home/products'
+    })
+}

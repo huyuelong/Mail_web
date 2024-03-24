@@ -21,6 +21,7 @@ defineProps({
                 <h3>
                     {{ title }}<small>{{ subTitle }}</small>
                 </h3>
+                <a href="">查看更多</a>
             </div>
             <!-- 主体内容区域 -->
             <slot />
@@ -49,6 +50,15 @@ defineProps({
                 font-size: 16px;
                 color: #999;
                 margin-left: 20px;
+            }
+        }
+
+        a {
+            transition: transform 0.3s ease;
+            &:hover{
+                color: $MainColor;
+                transform: scale(1.2);
+                text-decoration: underline;
             }
         }
     }
