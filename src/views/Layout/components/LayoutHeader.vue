@@ -6,7 +6,7 @@ import LayoutHeaderNav from './LayoutHeaderNav.vue'
 const categoriesList = ref([])
 const getCategories = async () => {
     const res = await getCategoriesAPI()
-    categoriesList.value = res.data
+    categoriesList.value = res.data.result
 }
 
 onMounted(() => getCategories())

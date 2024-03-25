@@ -10,7 +10,7 @@ const categoriesStore = useCategoriesStore()
             <RouterLink to="/">首页</RouterLink>
         </li>
         <li class="home" v-for="item in categoriesStore.categoriesList" :key="item.id">
-            <RouterLink to="/">
+            <RouterLink active-class="active" :to="`/category/${item.id}`">
                 {{ item.name }}
             </RouterLink>
         </li>

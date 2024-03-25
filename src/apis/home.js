@@ -1,9 +1,13 @@
 import httpInstance from "@/utils/http";
 
 // 获取轮播图
-export function getBannersAPI() {
+export function getBannersAPI(distribution_site) {
     return httpInstance({
-        url: 'api/home/banners'
+        url: 'api/home/banners',
+        params: {
+            // 默认为1，首页轮播图，2为分类商品区轮播图，表示广告
+            distribution_site
+        }
     })
 } 
 
