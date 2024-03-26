@@ -4,32 +4,40 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getBannersAPI } from '@/apis/home'
 import ProductsItem from '../Home/components/ProductsItem.vue'
+import { onBeforeRouteUpdate } from 'vue-router'
 
 // 分类数据
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () => {
-    const res = await getCategoryAPI(route.params.id)
-    console.log(res)
+const getCategory = async (id = route.params.id) => {
+    const res = await getCategoryAPI(id)
+    // console.log(res)
     categoryData.value = res.data.result
 }
 onMounted(() => getCategory())
+
+// 路由参数变化的时候 可以把分类数据接口重新发送
+onBeforeRouteUpdate((to) => {
+    getCategory(to.params.id)
+})
+
 
 // 获取轮播图数据
 const bannerList = ref([])
 const getBanner = async () => {
     const res = await getBannersAPI(2)
-    console.log(res)
+    // console.log(res)
     bannerList.value = res.data.result
 }
-
 onMounted(() => getBanner())
+
+
 </script>
 
 <template>
     <div class="top-category">
         <div class="container m-top-20">
-            <!-- 面包屑 -->
+            <!-- 面包屑导航 -->
             <div class="bread-container">
                 <el-breadcrumb separator=">">
                     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -50,17 +58,17 @@ onMounted(() => getBanner())
             <div class="sub-list">
                 <h3>全部分类</h3>
                 <ul>
-                    <li v-for="i in categoryData.children" :key="i.id">
-                        <RouterLink to="/">
-                            <img :src="i.picture" />
-                            <p>{{ i.name }}</p>
+                    <li v-for="item in categoryData.children" :key="item.id">
+                        <RouterLink :to="`/category/sub/${item.id}`">
+                            <img :src="item.picture" />
+                            <p>{{ item.name }}</p>
                         </RouterLink>
                     </li>
                 </ul>
             </div>
-            <div class="ref-goods" v-for="item in categoryData.children" :key="item.id">
+            <div class="ref-products" v-for="item in categoryData.children" :key="item.id">
                 <div class="head">
-                    <h3>- {{ item.name }}-</h3>
+                    <h3>--{{ item.name }}--</h3>
                 </div>
                 <div class="body">
                     <ProductsItem v-for="product in item.products" :products="product" :key="product.id" />
@@ -117,7 +125,7 @@ onMounted(() => getBanner())
         }
     }
 
-    .ref-goods {
+    .ref-products {
         background-color: #fff;
         margin-top: 20px;
         position: relative;
