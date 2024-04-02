@@ -15,7 +15,7 @@ onMounted(() => getProducts())
 
 <template>
     <div class="home-product">
-        <HomePublic :title="cate.name" v-for="cate in productsList" :key="cate.id">
+        <HomePublic :title="cate.name" :id="cate.id" v-for="cate in productsList" :key="cate.id">
             <div class="box">
                 <RouterLink class="cover" to="/">
                     <img v-img-lazy="cate.picture" />
@@ -92,12 +92,15 @@ onMounted(() => getProducts())
 
                     &:first-child {
                         width: 76px;
-                        background: rgba(0, 0, 0, 0.9);
+                        color: rgb(0, 0, 0);
+                        background: rgba(143, 168, 236, 0.9);
                     }
 
                     &:last-child {
+                        color: #352e2e;
+                        font-size: 16px;
                         flex: 1;
-                        background: rgba(0, 0, 0, 0.7);
+                        background: rgba(177, 200, 206, 0.7);
                     }
                 }
             }

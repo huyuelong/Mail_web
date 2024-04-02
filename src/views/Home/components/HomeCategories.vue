@@ -17,14 +17,13 @@ const categoriesStore = useCategoriesStore()
                     <h4>品牌推荐 <small>享受科技生活！</small></h4>
                     <ul>
                         <li v-for="i in item.children" :key="i.id">
-                            <RouterLink to="/">
+                            <RouterLink :to="`/category/sub/${i.id}`">
                                 <img :src="i.picture" alt="" />
                                 <div class="info">
                                     <p class="name ellipsis-2">
                                         {{ i.name }}
                                     </p>
                                     <p class="desc ellipsis">{{ i.description }}</p>
-                                    <!-- <p class="price"><i>¥</i>{{ i.price }}</p> -->
                                 </div>
                             </RouterLink>
                         </li>

@@ -8,6 +8,9 @@ defineProps({
     // 副标题
     subTitle: {
         type: String
+    },
+    id: {
+        type: String
     }
 })
 </script>
@@ -21,7 +24,7 @@ defineProps({
                 <h3>
                     {{ title }}<small>{{ subTitle }}</small>
                 </h3>
-                <a href="">查看更多</a>
+                <a v-if="id" :href="`http://localhost:5173/category/${id}`">查看更多</a>
             </div>
             <!-- 主体内容区域 -->
             <slot />
