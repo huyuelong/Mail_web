@@ -34,11 +34,11 @@ onMounted(() => getNewsList())
 .goods-list {
     display: flex;
     justify-content: space-between;
-    height: 406px;
+    height: 430px;
 
     li {
         width: 306px;
-        height: 406px;
+        height: 430px;
 
         background: #f0f9f4;
         transition: all .5s;

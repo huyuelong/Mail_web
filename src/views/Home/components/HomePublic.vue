@@ -24,7 +24,11 @@ defineProps({
                 <h3>
                     {{ title }}<small>{{ subTitle }}</small>
                 </h3>
-                <a v-if="id" :href="`http://localhost:5173/category/${id}`">查看更多</a>
+                <!-- <a v-if="id" :href="`http://localhost:5173/category/${id}`">查看更多<a class="iconfont icon-angle-right"></a></a> -->
+                <RouterLink v-if="id" :to="`/category/${id}`">
+                    查看更多
+                    <i class="iconfont icon-angle-right"></i>
+                </RouterLink>
             </div>
             <!-- 主体内容区域 -->
             <slot />
