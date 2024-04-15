@@ -1,9 +1,13 @@
 <script setup>
 import { getProductPicturesAPI, getProductDetailAPI, getProductSpecsAPI, getDetailPicturesAPI } from '@/apis/detail'
+import { ElMessage } from 'element-plus';
 // import imageItem from '@/components/imageItem.vue'
 // import SKU from '@/components/SKU/index.vue'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCartStore } from '@/stores/cartStore'
+
+const cartStore = useCartStore()
 
 // 获取商品图片集合
 const imageList = ref([])
@@ -21,8 +25,8 @@ onMounted(() => getPictrues())
 const detailData = ref([])
 const getDetail = async () => {
     const res = await getProductDetailAPI(route.params.id)
-    console.log(res)
     detailData.value = res.data.result[0]
+    console.log(detailData)
 }
 onMounted(() => getDetail())
 
@@ -45,6 +49,40 @@ const getDetailPictures = async () => {
     })
 }
 onMounted(() => getDetailPictures())
+
+// 选择sku规格
+let skuObj = {}
+const skuChange = (sku) => {
+    console.log(sku)
+    skuObj = sku
+    console.log(skuObj.price)
+}
+
+
+// 商品数量
+const count = ref(1)
+const countChange = (count) => {
+    console.log(count)
+}
+
+// 添加购物车
+const addCart = () => {
+    if (skuObj.skuId && count.value) {
+        cartStore.addCart({
+            // id: detailData.value.id,
+            // name: detailData.value.name,
+            // picture: detailData.value.picture,
+            // price: skuObj.price,
+            count: count.value,
+            skuId: skuObj.skuId,
+            // attrsText: skuObj.specsText,
+            // selected: true
+        })
+    } else {
+        ElMessage.warning('请选择规格')
+    }
+}
+
 </script>
 
 <template>
@@ -96,6 +134,13 @@ onMounted(() => getDetailPictures())
                                 <span v-if="detailData.oldPrice !== null" class="old-price">{{ detailData.oldPrice
                                     }}</span>
                             </p>
+                            <!-- <p class="g-price">
+                                <span>{{ skuObj.skuId ? skuObj.price : detailData.price }}</span>
+                                <span v-if="skuObj.skuId && skuObj.oldPrice !== null" class="old-price">{{
+                        skuObj.oldPrice }}</span>
+                                <span v-else-if="detailData.oldPrice !== null" class="old-price">{{ detailData.oldPrice
+                                    }}</span>
+                            </p> -->
                             <div class="g-service">
                                 <dl>
                                     <dt>活动</dt>
@@ -112,12 +157,12 @@ onMounted(() => getDetailPictures())
                                 </dl>
                             </div>
                             <!-- sku组件 -->
-                            <SKU :products="specList"></SKU>
+                            <SKU :products="specList" @change="skuChange"></SKU>
                             <!-- 数据组件 -->
-
+                            <el-input-number :min="1" v-model="count" @change="countChange" />
                             <!-- 按钮组件 -->
                             <div>
-                                <el-button size="large" class="btn" @click="addCart">
+                                <el-button size="large" class="btn" color="#ff7e00" @click="addCart">
                                     加入购物车
                                 </el-button>
                             </div>
@@ -364,7 +409,7 @@ onMounted(() => getDetailPictures())
 
 .btn {
     margin-top: 20px;
-
+    color: white;
 }
 
 .bread-container {

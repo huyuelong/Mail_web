@@ -2,6 +2,7 @@
 import { getCategoriesAPI } from '@/apis/layout'
 import { onMounted, ref } from 'vue'
 import LayoutHeaderNav from './LayoutHeaderNav.vue'
+import LayoutCart from './LayoutCart.vue'
 
 const categoriesList = ref([])
 const getCategories = async () => {
@@ -29,7 +30,7 @@ onMounted(() => getCategories())
                 <input type="text" placeholder="搜一搜">
             </div>
             <!-- 头部购物车 -->
-
+            <LayoutCart></LayoutCart>
         </div>
     </header>
 </template>
