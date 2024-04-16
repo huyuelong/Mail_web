@@ -38,7 +38,7 @@ httpInstance.interceptors.response.use(response => {
     // 对响应错误做点什么
     ElMessage({
         type: 'warning',
-        message: e.response.data.message
+        message: e.response.data.msg || e.response.data.message
     })
 
     // token失效处理

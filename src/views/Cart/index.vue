@@ -82,7 +82,7 @@ const cartStore = useCartStore()
                     <span class="red">¥ {{ cartStore.selPrice }} </span>
                 </div>
                 <div class="total">
-                    <el-button size="large" type="primary" class="order_set">下单结算</el-button>
+                    <el-button size="large" type="primary" class="order_set" @click="$router.push('/settlement')">下单结算</el-button>
                 </div>
             </div>
         </div>
