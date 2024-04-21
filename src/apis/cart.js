@@ -1,8 +1,8 @@
 import httpInstance from "@/utils/http"
 
 //加入购物车
-export const addCartAPI = ({ skuId, count }) => {
-    return httpInstance.post('api/cart', { skuId, count })
+export const addCartAPI = ({ skuId, count, istraded }) => {
+    return httpInstance.post('api/cart', { skuId, count, istraded })
 }
 
 // 获取购物车

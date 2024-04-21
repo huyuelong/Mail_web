@@ -1,12 +1,17 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore'
 import { getAddressAPI, addAddressAPI, delAddressAPI, updateAddressAPI } from '@/apis/settlement'
+import { createOrderAPI, getLatestOrderAPI } from '@/apis/order'
+import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { onMounted, ref, computed } from 'vue'
+
+const router = useRouter()
 const cartStore = useCartStore()
-// const checkInfo = {}  // 订单对象
+// 地址数据
 const addressList = ref({})
 const defAddressList = ref({})  // 默认地址对象
+const defAddressId = ref()
 // 获取收货地址
 const getaddress = async () => {
     const res = await getAddressAPI()
@@ -14,10 +19,12 @@ const getaddress = async () => {
     // 筛选出当 isDefault=1 为默认地址，没有默认地址则一项为默认地址
     const defAddress = res.data.result.find(item => item.isDefault === 1)
     defAddressList.value = defAddress ? defAddress : res.data.result[0]
+    console.log('defAddress:', defAddressList.value.id);
+    defAddressId.value = defAddressList.value.id
 }
 onMounted(() => getaddress())
 
-
+console.log('defAddressId:', defAddressId);
 // 控制切换弹框
 const showDialog = ref(false)
 
@@ -176,6 +183,48 @@ const deliveryFee = computed(() => {
 const totalAmount = computed(() => {
     return (cartStore.selPrice + deliveryFee.value).toFixed(2)
 })
+
+// 配送方式，1包邮，2顺丰速运
+const deliveryType = computed(() => {
+    return deliverOptionsList.value === '1' ? 1 : 2
+})
+// 支付方式
+const payMethod = computed(() => {
+    return payMathodList.value === '1' ? 1 : 2
+})
+
+
+const orderData = computed(() => {
+    return {
+        deliveryType: deliveryType.value,
+        payMethod: payMethod.value,
+        deliveryFee: deliveryFee.value,
+        productPrice: cartStore.selPrice.toFixed(2),
+        totalAmount: totalAmount.value,
+        remark: '',
+        cartIds: cartStore.cartList.map(item => item.id),
+        addressId: defAddressId.value
+    }
+})
+
+console.log('orderData数据为：', orderData.value)
+
+const createOrder = async () => {
+    orderData.value.addressId = defAddressId.value
+    await createOrderAPI(orderData.value)
+    // 获取用户最新订单，即刚刚递交的订单
+    const res = await getLatestOrderAPI()
+    console.log(res)
+    const orderId = res.data.result.latestOrder.id
+    router.push({
+        path: '/pay',
+        query: {
+            id: orderId
+        }
+    })
+    // 更新购物车
+    cartStore.getNewlist()
+}
 </script>
 
 <template>
@@ -275,7 +324,7 @@ const totalAmount = computed(() => {
                 </div>
                 <!-- 提交订单 -->
                 <div class="submit">
-                    <el-button type="primary" size="large">提交订单</el-button>
+                    <el-button @click="createOrder" type="primary" size="large">提交订单</el-button>
                 </div>
             </div>
         </div>

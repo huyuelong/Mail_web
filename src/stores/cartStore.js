@@ -47,10 +47,10 @@ export const useCartStore = defineStore('cart', () => {
 
     // 添加到购物车
     const addCart = async (products) => {
-        const { skuId, count } = products
+        const { skuId, count, istraded } = products
         console.log(skuId, count)
         if (isLogin.value) {
-            const res = await addCartAPI({ skuId, count })
+            const res = await addCartAPI({ skuId, count, istraded })
             console.log(res)
             getNewlist()
         } else {

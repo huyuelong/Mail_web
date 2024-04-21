@@ -75,6 +75,7 @@ const addCart = () => {
             // price: skuObj.price,
             count: count.value,
             skuId: skuObj.skuId,
+            istraded: 0
             // attrsText: skuObj.specsText,
             // selected: true
         })
