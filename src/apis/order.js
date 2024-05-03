@@ -9,3 +9,24 @@ export const createOrderAPI = (orderData) => {
 export const getLatestOrderAPI = () => {
     return httpInstance('api/getLatestOrder')
 }
+
+// 获取用户全部订单的全部数据或特定状态的订单数据
+// export const getAllOrderAPI = (orderState) => {
+//     return httpInstance('api/getAllOrder', { params: orderState })
+// }
+
+export const getAllOrderAPI = (orderState) => {
+    return httpInstance.get('api/getAllOrder', {
+      params: {
+        orderState
+      }
+    });
+  };
+
+// export const getAllOrderAPI = (params) => {
+//     return httpInstance({
+//       url:'api/getAllOrder',
+//       method:'GET',
+//       params
+//     })
+//   }

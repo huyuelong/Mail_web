@@ -11,7 +11,6 @@ export const useUserStore = defineStore('userInfo', () => {
         const res = await loginAPI({ username, password })
         // console.log(res)
         userInfo.value = res.data.result
-        console.log(userInfo)
     }
 
     // 退出登录时清除用户信息

@@ -9,14 +9,14 @@ defineProps({
 
 
 <template>
-    <div class="products-item">
-        <!-- <RouterLink to="/" class="products-item"> -->
+    <!-- <div class="products-item"> -->
+    <RouterLink :to="`/detail/${products.id}`" class="products-item">
         <img v-img-lazy="products.picture" alt="" />
         <p class="name ellipsis">{{ products.name }}</p>
         <p class="desc ellipsis">{{ products.desc }}</p>
         <p class="price">&yen;{{ products.price }}</p>
-        <!-- </RouterLink> -->
-    </div>
+    </RouterLink>
+    <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>

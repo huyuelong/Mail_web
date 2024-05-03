@@ -80,44 +80,5 @@ const filteredProducts = computed(() => {
         flex-wrap: wrap;
         padding: 0 10px;
     }
-
-    .goods-item {
-        display: block;
-        width: 220px;
-        margin-right: 20px;
-        padding: 20px 30px;
-        text-align: center;
-
-        img {
-            width: 160px;
-            height: 160px;
-        }
-
-        p {
-            padding-top: 10px;
-        }
-
-        .name {
-            font-size: 16px;
-        }
-
-        .desc {
-            color: #999;
-            height: 29px;
-        }
-
-        .price {
-            color: $priceColor;
-            font-size: 20px;
-        }
-    }
-
-    .pagination-container {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-    }
-
-
 }
 </style>

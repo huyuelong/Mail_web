@@ -3,6 +3,7 @@ import { getCategoriesAPI } from '@/apis/layout'
 import { onMounted, ref } from 'vue'
 import LayoutHeaderNav from './LayoutHeaderNav.vue'
 import LayoutCart from './LayoutCart.vue'
+import { useRouter } from 'vue-router'
 
 const categoriesList = ref([])
 const getCategories = async () => {
@@ -11,6 +12,22 @@ const getCategories = async () => {
 }
 
 onMounted(() => getCategories())
+
+const searchTerm = ref('')
+const router = useRouter()
+
+const handleSearch = () => {
+    if (searchTerm.value.trim() !== '') {
+        // 跳转到搜索页面，并将搜索词作为参数传递
+        router.push({ path: '/search', query: { term: searchTerm.value.trim() } });
+    }
+}
+
+const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handleSearch()
+    }
+}
 </script>
 
 <template>
@@ -27,7 +44,12 @@ onMounted(() => getCategories())
             <LayoutHeaderNav />
             <div class="search">
                 <i class="iconfont icon-search"></i>
-                <input type="text" placeholder="搜一搜">
+                <input 
+                    type="text" 
+                    placeholder="搜一搜"
+                    v-model="searchTerm"
+                    @keypress="handleKeyPress"
+                >
             </div>
             <!-- 头部购物车 -->
             <LayoutCart></LayoutCart>
