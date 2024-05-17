@@ -3,8 +3,8 @@ import { onMounted, ref, computed } from 'vue'
 import { getUserInfoAPI, updateUserInfoAPI, updateAvatarAPI } from '@/apis/user'
 import { ElMessage } from 'element-plus'
 import { Plus, Upload } from '@element-plus/icons-vue'
-// import {} from '@/assets/avatars/'
 
+// 获取用户信息数据
 const userInfo = ref({})
 const getuserinfo = async () => {
     const res = await getUserInfoAPI()
@@ -99,12 +99,12 @@ const uploadAvatar = () => {
 
 const onSelectFile = (uploadFile) => {
     // 基于 FileReader 读取图片做预览
-    const reader = new FileReader();
-    reader.readAsDataURL(uploadFile.raw);
+    const reader = new FileReader()
+    reader.readAsDataURL(uploadFile.raw)
     reader.onload = () => {
-        imgUrl.value = reader.result; // 设置 imgUrl 为读取的图片数据 URL
-    };
-};
+        imgUrl.value = reader.result // 设置 imgUrl 为读取的图片数据 URL
+    }
+}
 
 
 // 上传更新
@@ -112,15 +112,15 @@ const onUpdateAvatar = async () => {
     try {
         // 发送请求更新头像
         console.log('imgUrl.value', imgUrl.value)
-        await updateAvatarAPI({ user_avatar: imgUrl.value }); // 确保 imgUrl.value 是有效的图片数据 URL
+        await updateAvatarAPI({ user_avatar: imgUrl.value }) // 确保 imgUrl.value 是有效的图片数据 URL
         // 更新用户信息
-        await getuserinfo();
+        await getuserinfo()
         avatarDialog.value = false; // 关闭弹窗
         // 提示用户
-        ElMessage.success('头像更新成功');
+        ElMessage.success('头像更新成功')
     } catch (error) {
-        console.error('更新头像错误:', error);
-        ElMessage.error('更新头像失败');
+        console.error('更新头像错误:', error)
+        ElMessage.error('更新头像失败')
     }
 };
 
@@ -175,6 +175,7 @@ const edditInfo = () => {
     // 打开编辑信息的弹窗
     editDialog.value = true
 }
+
 // 上传修改
 const submitEditInfo = async () => {
     editInfoForm.value.validate(async valid => {
@@ -387,7 +388,7 @@ const submitEditInfo = async () => {
         }
 
         .el-upload:hover {
-            border-color: var(--el-color-primary);
+            border-color: var(--el-color-primary)
         }
 
         .el-icon.avatar-uploader-icon {

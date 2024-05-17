@@ -16,7 +16,7 @@ onMounted(() => getHotList())
 
 <template>
     <HomePublic title="火爆推荐" sub-title="人气爆款 不容错过">
-        <ul class="goods-list">
+        <ul class="products-list">
             <li v-for="item in hotList" :key="item.id">
                 <RouterLink to="/">
                     <img v-img-lazy="item.picture" alt="" />
@@ -30,7 +30,7 @@ onMounted(() => getHotList())
 
 
 <style scoped lang='scss'>
-.goods-list {
+.products-list {
     display: flex;
     justify-content: space-between;
     height: 406px;
@@ -39,7 +39,7 @@ onMounted(() => getHotList())
         width: 1000px;
         height: 406px;
 
-        background: #f0f9f4;
+        background-color: white;
         transition: all .5s;
 
         &:hover {

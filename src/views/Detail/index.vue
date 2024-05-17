@@ -1,6 +1,6 @@
 <script setup>
 import { getProductPicturesAPI, getProductDetailAPI, getProductSpecsAPI, getDetailPicturesAPI } from '@/apis/detail'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 // import imageItem from '@/components/imageItem.vue'
 // import SKU from '@/components/SKU/index.vue'
 import { ref, onMounted } from 'vue'
@@ -182,10 +182,6 @@ const addCart = () => {
                                     <img v-for="img in detailpictureList" :src="img" :key="img" alt="">
                                 </div>
                             </div>
-                        </div>
-                        <!-- 24热榜+专题推荐 -->
-                        <div class="products-aside">
-
                         </div>
                     </div>
                 </div>

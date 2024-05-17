@@ -3,6 +3,7 @@ import { getBannersAPI } from '@/apis/home'
 import { onMounted,ref } from 'vue'
 
 const bannerList = ref([])
+// 获取轮播图数据
 const getBanner = async () => {
     const res = await getBannersAPI()
     // console.log(res)

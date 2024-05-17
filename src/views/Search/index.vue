@@ -29,7 +29,7 @@ watch(() => router.currentRoute.value.query.term, () => {
             <div class="bread-container">
                 <el-breadcrumb separator=">">
                     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item>搜索</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{ router.currentRoute.value.query.term }}</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
 

@@ -27,10 +27,8 @@ const top = ref(0)
 const positionX = ref(0)
 const positionY = ref(0)
 watch([elementX, elementY], () => {
-  // console.log('xy变化了')
   // 如果鼠标没有移入到盒子里面 直接不执行后面的逻辑
   if (isOutside.value) return
-  // console.log('后续逻辑执行了')
   // 有效范围内控制滑块距离
   // 横向
   if (elementX.value > 100 && elementX.value < 300) {
@@ -57,7 +55,7 @@ watch([elementX, elementY], () => {
 
 
 <template>
-  {{ elementX }}, {{ elementY }}, {{ isOutside }}
+  <!-- {{ elementX }}, {{ elementY }}, {{ isOutside }} -->
   <div class="products-image">
     <!-- 左侧大图-->
     <div class="middle" ref="target">

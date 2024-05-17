@@ -16,7 +16,7 @@ onMounted(() => getNewsList())
 
 <template>
     <HomePublic title="新品" sub-title="新品上市 时代潮流">
-        <ul class="goods-list">
+        <ul class="products-list">
             <li v-for="item in newsList" :key="item.id">
                 <RouterLink :to="`/detail/${item.id}`">
                     <img :src="item.picture" alt="" />
@@ -31,7 +31,7 @@ onMounted(() => getNewsList())
 
 
 <style scoped lang='scss'>
-.goods-list {
+.products-list {
     display: flex;
     justify-content: space-between;
     height: 430px;
@@ -40,7 +40,7 @@ onMounted(() => getNewsList())
         width: 306px;
         height: 430px;
 
-        background: #f0f9f4;
+        background: white;
         transition: all .5s;
 
         &:hover {

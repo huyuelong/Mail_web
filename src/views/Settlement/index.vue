@@ -16,10 +16,10 @@ const defAddressId = ref()
 const getaddress = async () => {
     const res = await getAddressAPI()
     addressList.value = res.data.result
-    // 筛选出当 isDefault=1 为默认地址，没有默认地址则一项为默认地址
+    // 筛选出当 isDefault=1 为默认地址，没有默认地址则第一项为默认地址
     const defAddress = res.data.result.find(item => item.isDefault === 1)
     defAddressList.value = defAddress ? defAddress : res.data.result[0]
-    console.log('defAddress:', defAddressList.value.id);
+    console.log('defAddress:', defAddressList.value.id)
     defAddressId.value = defAddressList.value.id
 }
 onMounted(() => getaddress())

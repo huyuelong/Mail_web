@@ -21,13 +21,6 @@ onMounted(() => getPayInfo())
 
 
 // 跳转支付
-// 携带订单id以及回调地址跳转到支付地址（get）
-// 支付地址
-// const baseURL = 'http://127.0.0.1:3007/'
-// const backURL = 'http://127.0.0.1:5173/paycallback'
-// const redirectUrl = encodeURIComponent(backURL)
-// const payUrl = `${baseURL}api/alipay?orderId=${route.query.id}&redirect=${backURL}`
-
 const paymentUrl = ref(null)
 const goPay = async () => {
   try {

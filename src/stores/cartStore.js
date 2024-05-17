@@ -84,6 +84,7 @@ export const useCartStore = defineStore('cart', () => {
 
     // 已选择数量
     const selCount = computed(() => cartList.value.filter(item => item.selected).reduce((total, item) => total + item.count, 0))
+    // 已选择价格
     const selPrice = computed(() => cartList.value.filter(item => item.selected).reduce((total, item) => total + item.count * item.price, 0))
 
     // 单选功能

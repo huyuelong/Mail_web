@@ -44,6 +44,10 @@
                         <i class="iconfont icon-footer03"></i>
                         <span>物流快捷</span>
                     </a>
+                    <a href="javascript:;">
+                        <i class="iconfont icon-footer02"></i>
+                        <span>值得信赖</span>
+                    </a>
                 </div>
                 <!-- 版权信息 -->
                 <div class="copyright">
