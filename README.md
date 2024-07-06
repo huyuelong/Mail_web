@@ -1,14 +1,10 @@
-# web
+# Mail_web
 
-This template should help get you started developing with Vue 3 in Vite.
+典型的一个商城网站，基本实现整个线上购物流程。
+api接口见另一个仓库：https://github.com/huyuelong/Mail_api_serve/
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## 技术栈
+HTML,CSS,JavaScript,Vue3,Element Plus,Pinia,Vite,Axios
 
 ## Project Setup
 
